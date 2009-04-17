@@ -8,7 +8,9 @@ This project aims at creating a captive portal framework mainly for public wirel
 
 = Contact =
 
-http://www.switch.ch/mobile/
+Google Code Site: http://code.google.com/p/opencaptiveportal/
+
+SWITCH PWLAN Site: http://www.switch.ch/mobile/pwlan/
 
 
 = Goal and Idea =
