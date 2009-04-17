@@ -1,8 +1,8 @@
-#summary One-sentence summary of this page. <- *lol* foo bar
+#Captive portal supporting multiple uplink providers
 
 = Introduction =
 
-Add your content here.
+This project aims at creating a captive portal framework mainly for public wireless networks. The portal supports multiple uplink providers. It is mainly based on iptables and a web application.
 
 
 = Details =
