@@ -37,4 +37,6 @@ should achieve the ollowing objectives:
  * IPv4 (IPv6 planned)
 
 
-= Services/Daemons =
+= Services/Daemons and installation =
+
+See [Services]
