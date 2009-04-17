@@ -29,25 +29,26 @@ $TTL 86400
 dns             IN              A       0.0.0.0
 www             IN              A       10.192.24.20
 ' >> zones/pwlan-swisscom-mobile.ch
+
+# Change in named.conf.options the directory:
+# -> directory "/etc/bind/zones";
+
+# Reload Bind.
+/etc/init.d/bind9 restart
 }}}
-
-Change in named.conf.options the directory:
- directory "/etc/bind/zones";
-
-Reload Bind.
- /etc/init.d/bind9 restart
 
 
 == checks ==
 
- host www.pwlan-swisscom-mobile.ch localhost 
- ...
- # www.pwlan-swisscom-mobile.ch has address 10.192.24.20
+{{{
+host www.pwlan-swisscom-mobile.ch localhost 
+# ...
+# www.pwlan-swisscom-mobile.ch has address 10.192.24.20
 
-Check a host, so that the resolver has to do a DNS lookup:
- host www.switch.ch localhost 
- ...
- # www.switch.ch is an alias for oreius.switch.ch.
- # oreius.switch.ch has address 130.59.138.34
- # oreius.switch.ch has IPv6 address 2001:620:0:1b::b
-
+# Check a host, so that the resolver has to do a DNS lookup:
+host www.switch.ch localhost 
+# ...
+# www.switch.ch is an alias for oreius.switch.ch.
+# oreius.switch.ch has address 130.59.138.34
+# oreius.switch.ch has IPv6 address 2001:620:0:1b::b
+}}}
