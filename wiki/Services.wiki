@@ -30,3 +30,9 @@ Well, the server itself. Start it.
 
   Add User:       add-user.py
 Add a user, who can login to the XML RPC Server
+
+
+= DNS cache =
+There is a locale DNS cache. This is needed because for some provider we need to resolve private IP addresses.
+
+You can use whatever DNS resolver you want. We use bind9. See [installBind]
