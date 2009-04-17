@@ -2,7 +2,11 @@
 
 The services are divided into "packages", but interact.
 
-= landingpage =
+= install and config = 
+
+The following daemons must be installed. If you have installed them, see the next section.
+
+== landingpage ==
 Show the landingpage and offers the API to the User to set the Routes to the WISPs.
   Landingpage:    landingpage.php
 This is the welcome page for user, who are not using the VPN of the local University or SWITCHconnect Classic. Here are the iFrames of the WISPs.
@@ -13,11 +17,11 @@ Add a Route when a user clicks on an iFrame.
   Del Route:      back.php   needs:  manage-route.py
 When a Route is established to a WISP, the WISP set a link to back.php, so that the user can delete the Route entry an choose another WISP (or start the VPN client).
 
-== apache2 ==
+=== apache2 ===
 
 Install apache2 to serve as http server with fastcgi, see [installApache2]
 
-= iptables =
+== iptables ==
 Build the initial iptables-restore file.
   template file:  iptables.tmpl
 Insert local specific rules in this file.
@@ -26,7 +30,7 @@ Insert local specific rules in this file.
 Build the iptables-restore file. Needed at startup of the GNU/Linux Box. Or if something bad happend.
 
 
-= XML RPC =
+== XML RPC ==
 Statusqueries for WISPs, like: "is there still client $foo" and "which MAC adress does $bar have"
   XML RPC Server: xml-rpc-server.py
 Well, the server itself. Start it.
@@ -35,7 +39,12 @@ Well, the server itself. Start it.
 Add a user, who can login to the XML RPC Server
 
 
-= DNS cache =
+== DNS cache ==
 There is a locale DNS cache. This is needed because for some provider we need to resolve private IP addresses.
 
 You can use whatever DNS resolver you want. We use bind9. See [installBind]
+
+
+= operations =
+
+TO BE DONE
