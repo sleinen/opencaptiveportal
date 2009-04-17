@@ -13,6 +13,9 @@ Add a Route when a user clicks on an iFrame.
   Del Route:      back.php   needs:  manage-route.py
 When a Route is established to a WISP, the WISP set a link to back.php, so that the user can delete the Route entry an choose another WISP (or start the VPN client).
 
+== apache2 ==
+
+Install apache2 to serve as http server with fastcgi, see [installApache2]
 
 = iptables =
 Build the initial iptables-restore file.
