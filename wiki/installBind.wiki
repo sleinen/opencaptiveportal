@@ -16,7 +16,7 @@ zone "pwlan-swisscom-mobile.ch" {
 
 echo '
 $TTL 86400
-@               IN              SOA     dns.pwlan-swisscom-mobile.ch. CHANGE.example.com. (
+@               IN              SOA     dns.pwlan-swisscom-mobile.ch. CHANGEME.example.com. (
                                         2;      serial
                                         10800;  refresh (3h)
                                         3600;   retry (1h)
