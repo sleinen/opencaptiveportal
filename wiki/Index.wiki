@@ -1,0 +1,13 @@
+#Captive portal supporting multiple uplink providers
+
+= Introduction =
+
+This project aims at creating a captive portal framework mainly for public wireless networks. The portal supports multiple uplink providers. It is mainly based on iptables and a web application.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
