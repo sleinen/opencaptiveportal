@@ -59,6 +59,47 @@ FastCGIExternalServer /var/www/landingpage.fast_cgi/mysite.fcgi -socket /var/www
         SSLCertificateKeyFile /etc/ssl/private/CHANGEME.key
 </VirtualHost>
 ' >> landingpage
+
+a2ensite landingpage
+
+
+echo '
+# For admin (phpmyadmin, etc.)
+
+<VirtualHost 127.0.0.1:80>
+        ServerName localhost
+        ServerAdmin CHANGEME@example.com
+
+        DocumentRoot /var/www/localhost/
+
+        RewriteEngine on
+        # http://www.kb.cert.org/vuls/id/867593
+        RewriteCond %{REQUEST_METHOD} ^{TRACE|TRACK}
+        RewriteRule .* - [F]
+
+        <Directory /var/www/localhost/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order deny,allow
+                deny from all
+                allow from 127.0.0.1/32
+        </Directory>
+
+        # For munin
+        <Location /server-status>
+                SetHandler server-status
+                Order deny,allow
+                Deny from all
+                Allow from 127.0.0.1/32
+        </Location>
+
+</VirtualHost>
+' > localhost
+
+mkdir -p /var/www/localhost
+
+a2ensite localhost
+
 }}}
 
 Restart Apache2.
