@@ -12,6 +12,26 @@ Add to named.conf:
 include "/etc/bind/named.conf.logging";
 }}}
 
+Logrotate:
+{{{
+echo '
+/var/log/named.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  notifempty
+  create 640 bind bind
+  postrotate
+    if [ -f /var/run/bind/run/named.pid ]; then
+      /etc/init.d/bind9 restart > /dev/null
+    fi
+  endscript
+}
+' > /etc/logrotate.d/bind
+}}}
+
 {{{
 apt-get install bind9
 cd /etc/bind/
