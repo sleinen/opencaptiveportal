@@ -2,6 +2,12 @@
 
 == config ==
 
+Install bind9
+{{{
+apt-get install bind9
+cd /etc/bind/
+}}}
+
 Add to named.conf.options (so that the munin-plugin will work):
 {{{
 statistics-file "/var/run/bind/run/named.stats";
@@ -10,6 +16,28 @@ statistics-file "/var/run/bind/run/named.stats";
 Add to named.conf:
 {{{
 include "/etc/bind/named.conf.logging";
+}}}
+
+Create logging config file:
+{{{
+echo '
+logging {
+    channel logfile {
+        file "/var/log/named.log";
+        print-category yes;
+        print-severity yes;
+        print-time yes;
+    };
+
+    category default { 
+        logfile; default_debug; 
+    };
+
+    category lame-servers { 
+        null; 
+    };
+};
+' > named.conf.logging
 }}}
 
 Logrotate:
@@ -32,9 +60,9 @@ echo '
 ' > /etc/logrotate.d/bind
 }}}
 
+
+Create zones file, etc.:
 {{{
-apt-get install bind9
-cd /etc/bind/
 mkdir zones
 
 echo '
