@@ -2,6 +2,16 @@
 
 == config ==
 
+Add to named.conf.options (so that the munin-plugin will work):
+{{{
+statistics-file "/var/run/bind/run/named.stats";
+}}}
+
+Add to named.conf:
+{{{
+include "/etc/bind/named.conf.logging";
+}}}
+
 {{{
 apt-get install bind9
 cd /etc/bind/
