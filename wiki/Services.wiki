@@ -1,9 +1,16 @@
+
+[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software_small.png]
+
 This page gives an overview of the services and daemons, which have to run on the opencaptiveportal server. 
 
 The services are divided into "packages", but interact.
 The following daemons must be installed. If you have installed them, see the next section.
 
-[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software_small.png]
+Table of contents:
+<wiki:toc max_depth="2" />
+
+
+= Install =
 
 == Routing and iptables ==
 
