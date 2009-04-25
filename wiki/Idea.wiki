@@ -1,4 +1,3 @@
-
 = Goal and Idea =
 
 [http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal_small.png]
@@ -23,8 +22,3 @@ should achieve the ollowing objectives:
    # iPass offers users the possibility to automatically connect to an WLan (this is a TODO, please see the TODO file).
    # Event Login, e.g. a simple login formular on the landingpage where guest on events can login in (without vpn oder WISP login), see TODO.
  * IPv4 (IPv6 planned)
-
-
-= Services/Daemons and installation =
-
-See [Services]
