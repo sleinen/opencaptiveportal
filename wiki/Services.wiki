@@ -3,6 +3,7 @@ This page gives an overview of the services and daemons, which have to run on th
 The services are divided into "packages", but interact.
 The following daemons must be installed. If you have installed them, see the next section.
 
+[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software_small.png]
 
 == Routing and iptables ==
 
