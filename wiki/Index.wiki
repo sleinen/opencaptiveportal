@@ -15,7 +15,7 @@ SWITCH PWLAN Site: http://www.switch.ch/mobile/pwlan/
 
 = Goal and Idea =
 
-http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal.png
+[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal_small.png]
 
 Mark packets with iptables so that the are routed through different GRE 
 Tunnels to the according (commercial) WLan Internet Service Provider (WISP).
