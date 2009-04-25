@@ -15,5 +15,7 @@ SWITCH PWLAN Site: http://www.switch.ch/mobile/pwlan/
 
 = Content =
 
-  * [Idea] and Goal of the Project
-  * [Services] and Daemons, which needed to be installed
+Please (really!) see the following pages. There is already numerous documentation and it will follow a lot more.
+
+  # [Idea] and Goal of the Project
+  # [Services] and Daemons, which needed to be installed
