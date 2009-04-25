@@ -1,5 +1,3 @@
-#Captive portal supporting multiple uplink providers
-
 
 = Introduction =
 
