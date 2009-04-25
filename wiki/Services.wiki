@@ -8,7 +8,7 @@ The following daemons must be installed. If you have installed them, see the nex
 
 The iptables have two functions:
 
-  * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/|SWITCHconnect Classic)
+  * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/|SWITCHconnect_Classic])
   * If a user has selected a WIPS by clicking on an iframe, mark the following packets from this user (with iptables MARK), that we can route them with policy based routing through an specific GRE tunnel to the specific WISP.
 
 Build the initial iptables-restore file.
