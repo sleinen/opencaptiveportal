@@ -8,7 +8,7 @@ The following daemons must be installed. If you have installed them, see the nex
 
 The iptables have two functions:
 
-  * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/|SWITCHconnect_Classic])
+  * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/ SWITCHconnect Classic])
   * If a user has selected a WIPS by clicking on an iframe, mark the following packets from this user (with iptables MARK), that we can route them with policy based routing through an specific GRE tunnel to the specific WISP.
 
 Build the initial iptables-restore file.
@@ -21,7 +21,7 @@ Build the iptables-restore file. Needed at startup of the GNU/Linux Box. Or if s
 
 == Landingpage ==
 
-The landingpage is not only the "website", which you can see at the beginning of your wlan session. It is also the middleware to configure the iptables and keeps track about the active users. The landingpage is written in python with the [http://www.djangoproject.com/|django] framework.
+The landingpage is not only the "website", which you can see at the beginning of your wlan session. It is also the middleware to configure the iptables and keeps track about the active users. The landingpage is written in python with the [http://www.djangoproject.com/ django framework].
 
 Here we will explain the different functions:
 
