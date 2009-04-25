@@ -1,33 +1,48 @@
-#Services and Daemons
+This page gives an overview of the services and daemons, which have to run on the opencaptiveportal server. 
 
 The services are divided into "packages", but interact.
-
-= install and config = 
-
 The following daemons must be installed. If you have installed them, see the next section.
 
-== landingpage ==
-Show the landingpage and offers the API to the User to set the Routes to the WISPs.
-  Landingpage:    landingpage.php
-This is the welcome page for user, who are not using the VPN of the local University or SWITCHconnect Classic. Here are the iFrames of the WISPs.
 
-  Add Route:      route.php  needs:  manage-route.py
-Add a Route when a user clicks on an iFrame.
+== Routing and iptables ==
 
-  Del Route:      back.php   needs:  manage-route.py
-When a Route is established to a WISP, the WISP set a link to back.php, so that the user can delete the Route entry an choose another WISP (or start the VPN client).
+The iptables have two functions:
 
-=== apache2 ===
+  * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/|SWITCHconnect Classic)
+  * If a user has selected a WIPS by clicking on an iframe, mark the following packets from this user (with iptables MARK), that we can route them with policy based routing through an specific GRE tunnel to the specific WISP.
 
-Install apache2 to serve as http server with fastcgi, see [installApache2]
-
-== iptables ==
 Build the initial iptables-restore file.
   template file:  iptables.tmpl
 Insert local specific rules in this file.
 
   script:         make-iptables.py
 Build the iptables-restore file. Needed at startup of the GNU/Linux Box. Or if something bad happend.
+
+
+== Landingpage ==
+
+The landingpage is not only the "website", which you can see at the beginning of your wlan session. It is also the middleware to configure the iptables and keeps track about the active users. The landingpage is written in python with the [http://www.djangoproject.com/|django] framework.
+
+Here we will explain the different functions:
+
+  * Landingpage itself
+Show the landingpage and offers the API to the User to set the Routes to the WISPs.
+  Landingpage:    landingpage.php
+This is the welcome page for user, who are not using the VPN of the local University or SWITCHconnect Classic. Here are the iFrames of the WISPs.
+
+  * Add and delete routes
+  Add Route:      route.php  needs:  manage-route.py
+Add a Route when a user clicks on an iFrame.
+
+  Del Route:      back.php   needs:  manage-route.py
+When a Route is established to a WISP, the WISP set a link to back.php, so that the user can delete the Route entry an choose another WISP (or start the VPN client).
+
+As said earlier the landingpage is made with the django framework. We will need a http Server as proxy between the http request from the users to the python django daemon.
+We will show how this can be accomplished with apache2 and fastcgi. So we habe the two parts 
+
+  * [installApache2]
+  * [installLandingpage]
+
 
 
 == XML RPC ==
@@ -39,10 +54,16 @@ Well, the server itself. Start it.
 Add a user, who can login to the XML RPC Server
 
 
-== DNS cache ==
-There is a locale DNS cache. This is needed because for some provider we need to resolve private IP addresses.
+== DNS cache (here bind9) ==
+There is a locale DNS cache. This is (unfortunately) needed because some provider need to resolve a domain name to private IP address space.
 
-You can use whatever DNS resolver you want. We use bind9. See [installBind]
+You can use whatever DNS resolver you want. We use bind9, for installation and appropriate installation see [installBind]
+
+
+== Monitoring ==
+
+- TODO: Munin
+- TODO: ntop (?)
 
 
 = operations =
