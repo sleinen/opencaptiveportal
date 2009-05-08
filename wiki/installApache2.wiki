@@ -1,4 +1,4 @@
-#install apache2 to serve as http server with fastcgi
+Install apache2 to serve as http server with fastcgi. 
 
 We need a http server between the django fastcgi server process and the users http requests.
 

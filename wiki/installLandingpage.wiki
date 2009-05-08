@@ -1,4 +1,4 @@
-#install the landing page
+Install and start the landing page.
 
 Mainly start the django python server:
    shell/init.d-landingpage start

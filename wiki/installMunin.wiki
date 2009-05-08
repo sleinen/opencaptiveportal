@@ -1,4 +1,4 @@
-#install munin to get some statistics
+Install munin to get some statistics.
 
 You need a webserver, so that you can see the statistics. Read [installApache2]
 

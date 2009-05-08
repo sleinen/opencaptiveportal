@@ -1,4 +1,4 @@
-#install and configure bind9
+Install and configure Bind9.
 
 == config ==
 
