@@ -79,10 +79,17 @@ You can use whatever DNS resolver you want. We use bind9, for installation and a
 
 == Monitoring ==
 
-- TODO: Munin
-- TODO: ntop (?)
+=== Munin ===
+
+You can use munin for basic monitoring of the system heath.
+
+  * [installMunin]
+
+=== Ntop ===
+
+We need a intelligent solution for monitoring the link utilizations, especially of the GRE tunnels to the WISPs. Mabye we can use ntop. Or MRTG. Think about it...
 
 
-= operations =
+= Operations =
 
 TO BE DONE
