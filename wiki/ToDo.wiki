@@ -24,6 +24,12 @@ Landing page:
   * Get the listen ip address for xml-rpc from fqdn from ssl cert
   * (traffic) statistics (-> ntop ?)
   * Enable https (done ?)
+  * Start routine (the init.d script)
+
+
+XML RPC:
+  * Start routine (the init.d script)
+
 
 To test:
   * route.php 
