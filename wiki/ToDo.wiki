@@ -4,7 +4,6 @@ Here we want to write down, which task need to be done.
 If you are interrested, you can get in contact with us and solve some of the tasks.
 
 Administrative:
-  * Get mailing list ocp-dev@switch.ch
   * Configure archive and link on website
   * Describe TODO task, so that other person can do this tasks
   * What about this /get dhcp log http request (like the xml rpc ?)
@@ -22,11 +21,8 @@ Hole project:
 
 
 Landing page:
-  * Programm give_internet for Conference Login
   * Get the listen ip address for xml-rpc from fqdn from ssl cert
-
   * (traffic) statistics (-> ntop ?)
-
   * Enable https (done ?)
 
 To test:
@@ -41,4 +37,6 @@ Nice to have:
     * Document, what is necessary for Teredo. And implement it.
 
 = DONE =
+
+  * Get mailing list ocp-dev (et) switch.ch
 
