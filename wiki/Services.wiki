@@ -1,10 +1,10 @@
 
-[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software_small.png]
-
 This page gives an overview of the services and daemons, which have to run on the opencaptiveportal server. 
 
+[http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software.png http://opencaptiveportal.googlecode.com/svn/trunk/doc/OpenCaptivePortal-Software_small.png]
+
 The services are divided into "packages", but interact.
-The following daemons must be installed. If you have installed them, see the next section.
+The following daemons must be installed and configured.
 
 Table of contents:
 <wiki:toc max_depth="2" />
@@ -17,49 +17,58 @@ Table of contents:
 The iptables have two functions:
 
   * Allow VPN connections to the Universities ([http://www.switch.ch/mobile/classic/ SWITCHconnect Classic])
-  * If a user has selected a WIPS by clicking on an iframe, mark the following packets from this user (with iptables MARK), that we can route them with policy based routing through an specific GRE tunnel to the specific WISP.
+  * If a user has selected a WISP (wlan Internet Service Provider) by clicking on an iframe, the following packets will be marked in iptables (with the MARK target). With policy based routing we can then route these packets based on the MARK through a specific GRE tunnel. Each WISP has an own GRE tunnel. 
 
-Build the initial iptables-restore file.
-  template file:  iptables.tmpl
-Insert local specific rules in this file.
-
-  script:         make-iptables.py
-Build the iptables-restore file. Needed at startup of the GNU/Linux Box. Or if something bad happend.
+The iptables are build with a template file within the django framework. When booting the machine, the hole iptables have to be created and applied. When a user clicks on an iframe to establish a connection to a WISP, only one iptables rule is added. This is done with django (see "landing page").
 
 
-== Landingpage ==
+Relevant files for iptables:
+  Template file:  templates/iptables-restore.tmpl
+If you want specific firewall settings, you can easily edit the iptables template file.
 
-The landingpage is not only the "website", which you can see at the beginning of your wlan session. It is also the middleware to configure the iptables and keeps track about the active users. The landingpage is written in python with the [http://www.djangoproject.com/ django framework].
+  Script:         shell/make-iptables.py
+Build the iptables-restore file. You can than apply this file with the iptables-restore command. You need this at startup of the GNU/Linux Box. Or if something bad happend.
+
+  Rule updates:   helper/iptables.py
+The iptables related (shell) code, which is used by django.
+
+
+== SWITCHconnect Classic ==
+
+SWITCHconnect Classic is a set of VPN server IP addresses. All members participating in this scope allow in their (wlan) network access to the other VPN server IP addresses.
+At startup, we downlowd the newest set of IP addresses and apply it in the iptables rule set. 
+
+There a SWITCHconnect Classic user just need to start the VPN client and does not need to see the landing page or click on an iframe.
+
+
+== Landing page ==
+
+The landing page is not only the "website", which you can see at the beginning of your wlan session. It is also the middleware to configure the iptables and keeps track about the active users. The landing page is written in python with the [http://www.djangoproject.com/ django framework].
 
 Here we will explain the different functions:
 
-  * Landingpage itself
-Show the landingpage and offers the API to the User to set the Routes to the WISPs.
-  Landingpage:    landingpage.php
-This is the welcome page for user, who are not using the VPN of the local University or SWITCHconnect Classic. Here are the iFrames of the WISPs.
+  * Landing page itself
+Show the landing page and offers the API to the User to set the Routes to the WISPs.
+  Landing page template:    templates/landingpage.htm  (as URL: /landingpage.php)
+  Landing page python code: ocp/views.py
+This is the welcome page for user, who are not using the VPN of the local University or SWITCHconnect Classic. On this landing page are the iframes of the WISPs.
 
-  * Add and delete routes
-  Add Route:      route.php  needs:  manage-route.py
-Add a Route when a user clicks on an iFrame.
+  Add and delete routes:    ocp/views.py (as URL: /route.php and /back.php)
+Add a route, if a user clicks on an iframe or deletes a route, if a user clicks on the back button on a website of an WISP. In fact, we are not "setting a route" but adding or deleting an iptables rule which sets or deletes a MARK in iptables.
 
-  Del Route:      back.php   needs:  manage-route.py
-When a Route is established to a WISP, the WISP set a link to back.php, so that the user can delete the Route entry an choose another WISP (or start the VPN client).
-
-As said earlier the landingpage is made with the django framework. We will need a http Server as proxy between the http request from the users to the python django daemon.
-We will show how this can be accomplished with apache2 and fastcgi. So we habe the two parts 
+As said earlier the landing page is made with the django framework. Django comes with a developement http server, but for productive use we will install a "real" http server. This http server will act as proxy between the http request from the users to the python django daemon. We will show how this can be accomplished with apache2 and fastcgi. So we habe the two parts 
 
   * [installApache2]
   * [installLandingpage]
 
 
-
 == XML RPC ==
-Statusqueries for WISPs, like: "is there still client $foo" and "which MAC adress does $bar have"
-  XML RPC Server: xml-rpc-server.py
-Well, the server itself. Start it.
 
-  Add User:       add-user.py
-Add a user, who can login to the XML RPC Server
+Statusqueries for WISPs, like: "is there still client $foo" and "which MAC adress does $bar have". 
+  XML RPC Server: xml-rpc-server.py
+
+This server needs ad user management, because each WISP has a user.
+  Add User:       TODO
 
 
 == DNS cache (here bind9) ==

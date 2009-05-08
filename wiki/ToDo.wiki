@@ -1,0 +1,44 @@
+= TODO =
+
+Here we want to write down, which task need to be done. 
+If you are interrested, you can get in contact with us and solve some of the tasks.
+
+Administrative:
+  * Get mailing list ocp-dev@switch.ch
+  * Configure archive and link on website
+  * Describe TODO task, so that other person can do this tasks
+  * What about this /get dhcp log http request (like the xml rpc ?)
+
+
+Security check:
+  * Until now no view on security!
+  * Check all pages with login forms
+  * Check all pages where you have to be logedin
+
+
+Hole project:
+  * A install routine would be over kill (?)
+  * Complete documentation of a new installation
+
+
+Landing page:
+  * Programm give_internet for Conference Login
+  * Get the listen ip address for xml-rpc from fqdn from ssl cert
+
+  * (traffic) statistics (-> ntop ?)
+
+  * Enable https (done ?)
+
+To test:
+  * route.php 
+  * back.php
+
+
+Nice to have:
+  * IPv6 cabability: The WISPs are maybe not able to offer IPv6 connectivity. In this case we can use teredo. 
+  * Possible TODOs: 
+    * Django has no IPv6 data type/field -> we have to expand the models.
+    * Document, what is necessary for Teredo. And implement it.
+
+= DONE =
+
