@@ -5,7 +5,7 @@ You need a webserver, so that you can see the statistics. Read [installApache2]
 == install ==
 
 {{{
-apt-get install munin
+apt-get install munin munin-node
 }}}
 
 
@@ -18,4 +18,3 @@ Normally it works out of the box. You want to add the bind_ plugin, which you ca
 
 Visit the URL:
    /munin
-
