@@ -1,4 +1,3 @@
-
 = Introduction =
 
 This project aims at creating a captive portal framework mainly for public wireless networks within the [http://www.switch.ch/mobile/pwlan/ SWITCH PWLAN] project. The portal supports multiple uplink providers. It is mainly based on iptables and a web application.
@@ -24,3 +23,6 @@ Please (really!) see the following pages. There is already numerous documentatio
   # [Services] and Daemons, which needed to be installed
   # [ToDo], please read it, if you are wondering, why something does not work or if you want to contribute
 
+= Installation from scratch =
+
+See [Install].
