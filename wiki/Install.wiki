@@ -1,0 +1,156 @@
+#summary This page describes how to install ocp from scratch.
+
+= Base system =
+
+Install Debian Lenny default server installation.
+
+= Prepare system =
+== Install packages needed ==
+
+{{{
+aptitude install python-django postgresql python-psycopg dhcp3-server openssl vlan
+}}}
+
+== Configure networking ==
+
+Edit /etc/network/interfaces and configure the VLAN ID you use to connect your wireless network:
+
+{{{
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+auto lo eth0 eth1 eth1.984
+iface lo inet loopback
+
+iface eth0 inet static
+	address 130.59.98.210
+	netmask 255.255.255.224
+	gateway 130.59.98.193
+	# dns-* options are implemented by the resolvconf package, if installed
+	dns-nameservers 130.59.31.248
+	dns-search switch.ch
+
+iface eth1 inet static
+
+iface eth1.984 inet static
+	address 130.59.98.225
+	netmask 255.255.255.240
+	
+	up vconfig add eth1 984 || true
+	
+	down ip route flush dev eth1.984 || true
+	down ip addr  flush dev eth1.984 || true
+}}}
+
+= Get a server certificate =
+
+If you are a customer of SWITCH, you can get certificates from SWITCHpki: http://www.switch.ch/pki.
+
+== How to create a certificate request ==
+
+Edit `/etc/ssl/openssl.cnf` and fill in your data accordingly:
+
+{{{
+[ req ]
+default_bits = 2048
+prompt = no
+encrypt_key = no
+default_md = sha1
+distinguished_name = dn
+# optional, for requesting subjectAltName entries (uncomment to enable)
+#req_extensions = req_ext
+
+[ dn ]
+C = CH
+O = OFFICIAL_NAME_OF_YOUR_ORGANIZATION
+# see https://www.switch.ch/pki/participants.html
+# for the list of organizations participating in SWITCHpki
+CN = FULLY_QUALIFIED_DOMAIN_NAME_OF_YOUR_SERVER
+
+[ req_ext ]
+# (make sure that req_extensions is uncommented above)
+subjectAltName= DNS:FULLY_QUALIFIED_DOMAIN_NAME_OF_YOUR_SERVER, \
+DNS:SECOND_FULLY_QUALIFIED_DOMAIN_NAME_OF_YOUR_SERVER, \
+DNS:THIRD_FULLY_QUALIFIED_DOMAIN_NAME_OF_YOUR_SERVER
+# ... add more if required
+}}}
+
+Then create the certificate request:
+
+{{{
+cd /etc/ssl
+openssl req -new -config openssl.cnf -keyout private/key.pem -out request.csr
+}}}
+
+Put the content of `request.csr` into the form on https://switch.ch/pki/quovadis/request.html.
+
+Install the received certificate to `/etc/ssl/`.
+
+= Install Apache =
+
+Follow [installApache2]. Then edit `/etc/apache2/site-enabled/landingpage` and replace the placeholders to fit your environment.
+
+= Install BIND =
+
+Follow [installBind].
+
+= Install Munin =
+
+Follow [installMunin].
+
+= Prepare the database =
+
+First, create the database and set user passwords.
+
+{{{
+su postgres
+psql
+alter user postgres with encrypted password 'asdf';
+create user pocp;
+alter user pocp with encrypted password 'adsf';
+create database pocp;
+\q
+}}}
+
+Then edit `/etc/postgresql/8.3/main/pg_hba.conf` and replace "ident sameuser" by "password":
+
+{{{
+local   all         postgres                          password
+local   all         all                               password
+}}}
+
+= Setup DHCP server =
+
+Edit `/etc/dhcp3/dhcp.conf` and configure a subnet the nameserver and set the server to be authoritative.
+
+Edit `edit /etc/default/dhcp3-server` and add the appropriate interface to the list of interfaces (replace 984 with your VLAN ID):
+
+{{{
+INTERFACES="eth1.984"
+}}}
+
+= Install ocp =
+
+Check out the code from the subversion repository and copy it:
+
+{{{
+cd /usr/src/
+svn checkout http://opencaptiveportal.googlecode.com/svn/trunk/ opencaptiveportal-readonly
+cp -r /usr/src/opencaptiveportal/source/pocp /usr/local/
+}}}
+
+Edit the ADMINS section in `/usr/local/pocp/settings.py`. Adjust the database connection settings (e.g. your password) just below.
+
+== Setup database ==
+
+{{{
+cd /usr/local/pocp/
+./manage.py syncdb
+}}}
+
+== Start services ==
+
+{{{
+/etc/init.d/apache2 restart
+cd /usr/local/pocp
+./shell/init.d-landingpage start
+}}}
