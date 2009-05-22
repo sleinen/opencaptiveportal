@@ -141,6 +141,7 @@ cp -r /usr/src/opencaptiveportal/source/pocp /usr/local/
 Edit the ADMINS section in `/usr/local/pocp/settings.py`. Adjust the database connection settings (e.g. your password) just below:
 
 {{{
+[...]
 ADMINS = (
     ('Foo Bar', 'foo.bar@domain.com'),
 )
@@ -153,6 +154,7 @@ DATABASE_USER     = 'pocp'             # Not used with sqlite3.
 DATABASE_PASSWORD = 'asdf'         # Not used with sqlite3.
 DATABASE_HOST     = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT     = ''             # Set to empty string for default. Not used with sqlite3.
+[...]
 }}}
 
 == Setup database ==
