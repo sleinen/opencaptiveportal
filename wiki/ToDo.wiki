@@ -15,7 +15,7 @@ Security check:
   * Check all pages where you have to be logedin
 
 
-Hole project:
+Whole project:
   * A install routine would be over kill (?)
   * Complete documentation of a new installation
 
@@ -45,4 +45,3 @@ Nice to have:
 = DONE =
 
   * Get mailing list ocp-dev (et) switch.ch
-
