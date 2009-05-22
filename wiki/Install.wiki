@@ -138,7 +138,22 @@ svn checkout http://opencaptiveportal.googlecode.com/svn/trunk/ opencaptiveporta
 cp -r /usr/src/opencaptiveportal/source/pocp /usr/local/
 }}}
 
-Edit the ADMINS section in `/usr/local/pocp/settings.py`. Adjust the database connection settings (e.g. your password) just below.
+Edit the ADMINS section in `/usr/local/pocp/settings.py`. Adjust the database connection settings (e.g. your password) just below:
+
+{{{
+ADMINS = (
+    ('Foo Bar', 'foo.bar@domain.com'),
+)
+
+MANAGERS = ADMINS
+
+DATABASE_ENGINE   = 'postgresql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME     = 'pocp'             # Or path to database file if using sqlite3.
+DATABASE_USER     = 'pocp'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'asdf'         # Not used with sqlite3.
+DATABASE_HOST     = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT     = ''             # Set to empty string for default. Not used with sqlite3.
+}}}
 
 == Setup database ==
 
