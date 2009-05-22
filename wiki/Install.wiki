@@ -1,5 +1,11 @@
 #summary This page describes how to install ocp from scratch.
 
+= Introduction =
+
+This page roughly describes the necessary steps to setup an ocp box. There will be a VMware image available shortly. On this image, the work below has already be done. But you need to adjust many things in order to fit your network environment. So, please read this howto even if you install the VMware image.
+
+Before you start, be aware that you need to get a server certificate.
+
 = Base system =
 
 Install Debian Lenny default server installation.
