@@ -46,6 +46,13 @@ iface eth1.901 inet static
 	down ip route flush dev eth1.901 || true
 	down ip addr  flush dev eth1.901 || true
 }}}
+Do not forget to "turn on" routing on your system in /etc/sysctl.conf:
+{{{
+# Uncomment the next line to enable packet forwarding for IPv4
+net.ipv4.conf.default.forwarding=1
+# Uncomment the next line to enable packet forwarding for IPv6
+net.ipv6.conf.default.forwarding=1
+}}}
 
 = Get a server certificate =
 
