@@ -25,7 +25,7 @@ Site:
 a2dissite default
 cd /etc/apache2/sites-available
 echo '
-FastCGIExternalServer /var/www/landingpage.fast_cgi/mysite.fcgi -socket /var/www/landingpage.fast_cgi/mysite.sock -idle-timeout 60
+FastCGIExternalServer /var/www/fast_cgi/mysite.fcgi -socket /var/www/fast_cgi/mysite.sock -idle-timeout 60
 
 <VirtualHost *:80>
         ServerAdmin CHANGEME@example.com
