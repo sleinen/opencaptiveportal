@@ -102,6 +102,14 @@ Install the received certificate to `/etc/ssl/`.
 
 Follow [installApache2]. Then edit `/etc/apache2/site-enabled/landingpage` and replace the placeholders to fit your environment.
 
+The user (e.g., `www-data`) which runs the webserver needs some sudo rights:
+{{{
+echo "
+Cmnd_Alias PWLAN = /sbin/iptables, /sbin/ip
+www-data        ALL=NOPASSWD:PWLAN
+" >> /etc/sudoers
+}}}
+
 = Install BIND =
 
 Follow [installBind].
