@@ -33,8 +33,12 @@ FastCGIExternalServer /var/www/fast_cgi/mysite.fcgi -socket /var/www/fast_cgi/my
         ###RewriteEngine On
         ###RedirectMatch permanent ^/(.*)$ https://insert-fqdn-here/$1
 
-        DocumentRoot /var/www/landingpage.fast_cgi/
+        #DocumentRoot /var/www/landingpage.fast_cgi/
+        DocumentRoot /var/www/fast_cgi/
+        # Media files for admin interface:
+        Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
         RewriteEngine On
+        RewriteRule ^/(media.*)$ /$1 [QSA,L,PT]
         RewriteRule ^/(.*)$ /mysite.fcgi/$1 [QSA,L]
 
         ErrorLog /var/log/apache2/landingpage_error.log
@@ -45,8 +49,12 @@ FastCGIExternalServer /var/www/fast_cgi/mysite.fcgi -socket /var/www/fast_cgi/my
 <VirtualHost *:443>
         ServerAdmin CHANGEME@example.com
 
-        DocumentRoot /var/www/landingpage.fast_cgi/
+        #DocumentRoot /var/www/landingpage.fast_cgi/
+        DocumentRoot /var/www/fast_cgi/
+        # Media files for admin interface:
+        Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
         RewriteEngine On
+        RewriteRule ^/(media.*)$ /$1 [QSA,L,PT]
         RewriteRule ^/(.*)$ /mysite.fcgi/$1 [QSA,L]
 
         ErrorLog /var/log/apache2/landingpage_error.log
