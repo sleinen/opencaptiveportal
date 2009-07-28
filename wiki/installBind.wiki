@@ -15,6 +15,7 @@ statistics-file "/var/run/bind/run/named.stats";
 
 Add to named.conf:
 {{{
+include "/etc/bind/named.conf.acl";
 include "/etc/bind/named.conf.logging";
 }}}
 
@@ -38,6 +39,15 @@ logging {
     };
 };
 ' > named.conf.logging
+}}}
+
+Create ACL config gile:
+{{{
+echo '
+acl wlan {
+    10.1.2.0/24; # TODO: Enter your WLan network here, only from this network are DNS queries allowed
+};
+' > named.conf.acl
 }}}
 
 Logrotate:
@@ -69,6 +79,7 @@ echo '
 zone "pwlan-swisscom-mobile.ch" {
         type    master;
         file    "pwlan-swisscom-mobile.ch";
+        allow-query { localhost; wlan; };
 };
 ' >> named.conf.local
 
