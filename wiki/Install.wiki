@@ -105,7 +105,7 @@ Follow [installApache2]. Then edit `/etc/apache2/site-enabled/landingpage` and r
 The user (e.g., `www-data`) which runs the webserver needs some sudo rights:
 {{{
 echo "
-Cmnd_Alias PWLAN = /sbin/iptables, /sbin/ip
+Cmnd_Alias PWLAN = /sbin/iptables, /sbin/ip, /sbin/iptables-restore
 www-data        ALL=NOPASSWD:PWLAN
 " >> /etc/sudoers
 }}}
