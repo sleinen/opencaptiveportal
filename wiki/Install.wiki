@@ -205,8 +205,19 @@ cd /usr/local/pocp/
 
 == Start services ==
 
+Configure daemons to start automatically:
+{{{
+ln -s /usr/local/pocp/shell/init.d-landingpage /etc/init.d/pocp-landingpage
+update-rc.d pocp-landingpage defaults
+ln -s /usr/local/pocp/shell/init.d-xml-rpc /etc/init.d/pocp-xml-rpc
+update-rc.d pocp-xml-rpc defaults
+# Logrotate:
+ln -s /usr/local/pocp/shell/logrotate /etc/logrotate.d/pocp
+}}}
+
+Start manually:
 {{{
 /etc/init.d/apache2 restart
-cd /usr/local/pocp
-./shell/init.d-landingpage start
+/etc/init.d/pocp-landingpage start
+/etc/init.d/pocp-xml-rpc start
 }}}
