@@ -10,11 +10,28 @@ Before you start, be aware that you need to get a server certificate.
 
 Install Debian Lenny default server installation.
 
+= Requirements =
+
+We need and will install the following software versions:
+  * python 2.5
+  * django >= 1.0
+  * postgresql >= 8.1
+  * psycopg (postgresql interface for python)
+  * dhcp3-server
+  * openssl
+
 = Prepare system =
 == Install packages needed ==
 
 {{{
 aptitude install python-django postgresql python-psycopg dhcp3-server openssl vlan
+aptitude install python2.5 python2.5-minimal
+}}}
+
+Check:
+{{{
+$ ls -la /usr/bin/python
+lrwxrwxrwx 1 root root 9 2009-10-14 12:47 /usr/bin/python -> python2.5
 }}}
 
 == Configure networking ==
@@ -175,6 +192,7 @@ Check out the code from the subversion repository and copy it:
 cd /usr/src/
 svn checkout http://opencaptiveportal.googlecode.com/svn/trunk/ opencaptiveportal-readonly
 cp -r /usr/src/opencaptiveportal/source/pocp /usr/local/
+ln -s /usr/local/pocp /usr/lib/python2.5/site-packages/
 }}}
 
 Edit the ADMINS section in `/usr/local/pocp/settings.py`. Adjust the database connection settings (e.g. your password) just below:
@@ -221,3 +239,4 @@ Start manually:
 /etc/init.d/pocp-landingpage start
 /etc/init.d/pocp-xml-rpc start
 }}}
+
