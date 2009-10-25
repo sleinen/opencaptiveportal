@@ -1,40 +1,14 @@
 = TODO =
 
-Here we want to write down, which task need to be done. 
-If you are interrested, you can get in contact with us and solve some of the tasks.
-
-Administrative:
-  * Configure archive and link on website
-  * Describe TODO task, so that other person can do this tasks
-  * What about this /get dhcp log http request (like the xml rpc ?)
-
-
-Security check:
-  * Until now no view on security!
-  * Check all pages with login forms
-  * Check all pages where you have to be logedin
-
-
-Whole project:
-  * A install routine would be over kill (?)
-  * Complete documentation of a new installation
+Here are some notes about tasks which need to be done. 
+If you are interested plese get in contact with us and help us to solve the problem.
 
 
 Landing page:
-  * Get the listen ip address for xml-rpc from fqdn from ssl cert
   * (traffic) statistics (-> ntop ?)
-  * Enable https (done ?)
-  * Start routine (the init.d script)
-
-
-XML RPC:
-  * Start routine (the init.d script)
-
-
-To test:
-  * route.php 
-  * back.php
-
+  * In forward:filter is somewhere a "established -j ACCEPT", therefore, a User is not blocked directly after logout
+  * After login the redirect does not work (-> User thinks I did not work?)
+  * Do not bind cookies to URL (whut was that?)
 
 Nice to have:
   * IPv6 cabability: The WISPs are maybe not able to offer IPv6 connectivity. In this case we can use teredo. 
@@ -42,6 +16,36 @@ Nice to have:
     * Django has no IPv6 data type/field -> we have to expand the models.
     * Document, what is necessary for Teredo. And implement it.
 
+
+= Known Bugs (we will not fix that ;)) =
+
+- In Internet Explorer the login box is to small
+
+
+= Recently DONE =
+
+- init.d scripts are Debian style
+- GRE tunnels and ip configuration during start of landingpage daemon
+- ldap group 
+- cleanup sessions and old routes
+- dhcp.php
+- XMP-RPC daemon start-up
+
+
 = DONE =
 
+XML RPC:
+  * Start routine (the init.d script)
+
+Landing page:
+  * Get the listen ip address for xml-rpc from fqdn from ssl cert
+  * Enable https (done ?)
+  * Start routine (the init.d script)
+
+Entire project:
+  * Complete documentation of a new installation
+
+Administrative:
   * Get mailing list ocp-dev (et) switch.ch
+  * Describe TODO task, so that other person can do this tasks
+
