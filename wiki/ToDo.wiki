@@ -8,7 +8,7 @@ Landing page:
   * (traffic) statistics (-> ntop ?)
   * In forward:filter is somewhere a "established -j ACCEPT", therefore, a User is not blocked directly after logout
   * After login the redirect does not work (-> User thinks I did not work?)
-  * Do not bind cookies to URL (whut was that?)
+  * Do not bind cookies to URL (because the URL is not the URL of the landingpage, but google.com, yahoo.com or whatever the user typed in)
 
 Nice to have:
   * IPv6 cabability: The WISPs are maybe not able to offer IPv6 connectivity. In this case we can use teredo. 
