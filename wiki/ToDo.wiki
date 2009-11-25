@@ -19,17 +19,17 @@ Nice to have:
 
 = Known Bugs (we will not fix that ;)) =
 
-- In Internet Explorer the login box is to small
+  * In Internet Explorer the login box is to small
 
 
 = Recently DONE =
 
-- init.d scripts are Debian style
-- GRE tunnels and ip configuration during start of landingpage daemon
-- ldap group 
-- cleanup sessions and old routes
-- dhcp.php
-- XMP-RPC daemon start-up
+  * init.d scripts are Debian style
+  * GRE tunnels and ip configuration during start of landingpage daemon
+  * ldap group 
+  * cleanup sessions and old routes
+  * dhcp.php
+  * XMP-RPC daemon start-up
 
 
 = DONE =
@@ -48,4 +48,3 @@ Entire project:
 Administrative:
   * Get mailing list ocp-dev (et) switch.ch
   * Describe TODO task, so that other person can do this tasks
-
